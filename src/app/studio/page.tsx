@@ -30,12 +30,19 @@ export default function StudioPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic }),
       });
-      if (!res.ok) throw new Error('Failed to enhance');
+      if (!res.ok) {
+        let errStr = 'Failed to enhance';
+        try {
+          const errData = await res.json();
+          errStr = errData.error || errStr;
+        } catch(e) {}
+        throw new Error(errStr);
+      }
       const data = await res.json();
       setTopic(data.expandedText);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('Failed to enhance prompt. Please try again.');
+      alert(`Failed to enhance: ${error.message}`);
     } finally {
       setIsEnhancing(false);
     }
