@@ -145,6 +145,9 @@ export default function StudioPage() {
                       onChange={(e) => setTopic(e.target.value)}
                       placeholder="Describe your story idea here... (e.g. David vs Goliath)"
                       className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-4 text-slate-100 placeholder:text-slate-600 focus:ring-2 focus:ring-purple-500/50 outline-none resize-none h-32 pb-12"
+                      data-gramm="false"
+                      data-gramm_editor="false"
+                      data-enable-grammarly="false"
                     />
                     <div className="absolute bottom-3 right-3">
                       <button
@@ -249,9 +252,9 @@ export default function StudioPage() {
               className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {isGenerating ? (
-                <><motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}><Sparkles className="w-5 h-5" /></motion.div> Director is thinking...</>
+                <span className="flex items-center gap-2"><motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}><Sparkles className="w-5 h-5" /></motion.div> Director is thinking...</span>
               ) : (
-                <><Video className="w-5 h-5" /> Generate Storyboard</>
+                <span className="flex items-center gap-2"><Video className="w-5 h-5" /> Generate Storyboard</span>
               )}
             </button>
           </form>
