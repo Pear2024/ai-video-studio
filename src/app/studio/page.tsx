@@ -321,7 +321,6 @@ export default function StudioPage() {
                 <p className="text-xl font-bold text-white mb-2">Call to Action (CTA)</p>
                 <p className="text-slate-300">{result.cta}</p>
               </div>
-              </div>
             </motion.div>
           )}
         </div>
