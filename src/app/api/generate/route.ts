@@ -5,9 +5,11 @@ import { generateObject } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { z } from 'zod';
 import * as cheerio from 'cheerio';
-const pdfParse = require('pdf-parse');
 
-// Initialize Gemini
+// Polyfill DOMMatrix for pdf-parse in Next.js Edge/Serverless environments
+if (typeof global.DOMMatrix === 'undefined') {
+  (global as any).DOMMatrix = class DOMMatrix {};
+}
 const google = createGoogleGenerativeAI({
   apiKey: process.env.GEMINI_API_KEY || '',
 });
@@ -48,6 +50,7 @@ export async function POST(req: Request) {
     // 1. Extract from PDF if uploaded
     if (file && file.size > 0) {
       const buffer = Buffer.from(await file.arrayBuffer());
+      const pdfParse = require('pdf-parse');
       const pdfData = await pdfParse(buffer);
       extractedText += `\n\n--- EXTRACTED PDF CONTENT ---\n${pdfData.text}\n---------------------------\n`;
     }
