@@ -156,12 +156,12 @@ export default function StudioPage() {
                         disabled={isEnhancing || !topic.trim()}
                         className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-600/20 hover:bg-purple-600/40 text-purple-400 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
                       >
-                        {isEnhancing ? (
-                          <Sparkles className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <Sparkles className="w-4 h-4" />
-                        )}
-                        {isEnhancing ? 'Enhancing...' : 'Magic Enhance'}
+                        <span className={`flex items-center gap-1.5 ${isEnhancing ? 'hidden' : 'flex'}`}>
+                          <Sparkles className="w-4 h-4" /> Magic Enhance
+                        </span>
+                        <span className={`flex items-center gap-1.5 ${isEnhancing ? 'flex' : 'hidden'}`}>
+                          <Sparkles className="w-4 h-4 animate-spin" /> Enhancing...
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -249,11 +249,12 @@ export default function StudioPage() {
               disabled={isGenerating || !isFormValid}
               className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              {isGenerating ? (
-                <span className="flex items-center gap-2"><Sparkles className="w-5 h-5 animate-spin" /> Director is thinking...</span>
-              ) : (
-                <span className="flex items-center gap-2"><Video className="w-5 h-5" /> Generate Storyboard</span>
-              )}
+              <span className={`flex items-center gap-2 ${isGenerating ? 'hidden' : 'flex'}`}>
+                <Video className="w-5 h-5" /> Generate Storyboard
+              </span>
+              <span className={`flex items-center gap-2 ${isGenerating ? 'flex' : 'hidden'}`}>
+                <Sparkles className="w-5 h-5 animate-spin" /> Director is thinking...
+              </span>
             </button>
           </form>
         </motion.div>
