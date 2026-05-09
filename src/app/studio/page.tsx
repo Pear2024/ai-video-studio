@@ -18,7 +18,28 @@ export default function StudioPage() {
   const [christianMode, setChristianMode] = useState(false);
   
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isEnhancing, setIsEnhancing] = useState(false);
   const [result, setResult] = useState<any>(null);
+
+  const handleEnhance = async () => {
+    if (!topic.trim()) return;
+    setIsEnhancing(true);
+    try {
+      const res = await fetch('/api/enhance-prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic }),
+      });
+      if (!res.ok) throw new Error('Failed to enhance');
+      const data = await res.json();
+      setTopic(data.expandedText);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to enhance prompt. Please try again.');
+    } finally {
+      setIsEnhancing(false);
+    }
+  };
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,12 +132,31 @@ export default function StudioPage() {
               {/* Dynamic Inputs */}
               <div className="mt-4">
                 {inputType === 'text' && (
-                  <textarea 
-                    value={topic}
-                    onChange={(e) => setTopic(e.target.value)}
-                    placeholder="Describe your story idea here... (e.g. David vs Goliath)"
-                    className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-4 text-slate-100 placeholder:text-slate-600 focus:ring-2 focus:ring-purple-500/50 outline-none resize-none h-32"
-                  />
+                  <div className="relative">
+                    <textarea 
+                      value={topic}
+                      onChange={(e) => setTopic(e.target.value)}
+                      placeholder="Describe your story idea here... (e.g. David vs Goliath)"
+                      className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-4 text-slate-100 placeholder:text-slate-600 focus:ring-2 focus:ring-purple-500/50 outline-none resize-none h-32 pb-12"
+                    />
+                    <div className="absolute bottom-3 right-3">
+                      <button
+                        type="button"
+                        onClick={handleEnhance}
+                        disabled={isEnhancing || !topic.trim()}
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-600/20 hover:bg-purple-600/40 text-purple-400 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+                      >
+                        {isEnhancing ? (
+                          <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
+                            <Sparkles className="w-4 h-4" />
+                          </motion.div>
+                        ) : (
+                          <Sparkles className="w-4 h-4" />
+                        )}
+                        {isEnhancing ? 'Enhancing...' : 'Magic Enhance'}
+                      </button>
+                    </div>
+                  </div>
                 )}
                 
                 {inputType === 'url' && (
