@@ -86,7 +86,7 @@ export async function POST(req: Request) {
     }
 
     const { object } = await generateObject({
-      model: google('gemini-2.5-pro'),
+      model: google('gemini-2.5-flash'),
       schema: storyboardSchema,
       prompt: `${systemPrompt}\n\nSOURCE MATERIAL:\n${extractedText}`,
     });
