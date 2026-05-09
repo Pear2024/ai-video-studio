@@ -42,12 +42,19 @@ export default function StudioPage() {
         body: formData,
       });
 
-      if (!res.ok) throw new Error('Failed to generate');
+      if (!res.ok) {
+        let errStr = 'Failed to generate';
+        try {
+          const errData = await res.json();
+          errStr = errData.error || errStr;
+        } catch(e) {}
+        throw new Error(errStr);
+      }
       const data = await res.json();
       setResult(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Error generating storyboard. Please check your API keys or file size.");
+      alert(`Error generating storyboard: ${error.message}`);
     } finally {
       setIsGenerating(false);
     }

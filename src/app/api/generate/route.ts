@@ -94,6 +94,7 @@ export async function POST(req: Request) {
     return NextResponse.json(object);
   } catch (error) {
     console.error('AI Generation Error:', error);
-    return NextResponse.json({ error: 'Failed to generate storyboard' }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
