@@ -21,6 +21,7 @@ const storyboardSchema = z.object({
   summary: z.string(),
   music_mood: z.string(),
   cta: z.string(),
+  character_prompt: z.string().describe("A highly detailed prompt describing the main character(s) appearance, clothing, and traits, so the user can copy-paste this into image generators to maintain consistency across scenes."),
   scenes: z.array(z.object({
     scene_number: z.number(),
     visual: z.string(),
@@ -81,7 +82,7 @@ export async function POST(req: Request) {
     Create a highly engaging, cinematic storyboard based on the provided Source Material.
     The duration is ${duration}. The mood should be ${mood} and the visual style is ${style}.
     Output MUST be exactly 5 scenes minimum, matching the JSON schema precisely.
-    CRITICAL REQUIREMENT: YOU MUST GENERATE ALL TEXT IN THAI LANGUAGE (ภาษาไทย). The title, viral_hook, summary, music_mood, cta, narration, visual, image_prompt, and video_prompt must ALL be written in Thai.`;
+    CRITICAL REQUIREMENT: YOU MUST GENERATE ALL TEXT IN THAI LANGUAGE (ภาษาไทย). The title, viral_hook, summary, music_mood, cta, character_prompt, narration, visual, image_prompt, and video_prompt must ALL be written in Thai.`;
 
     if (christianMode) {
       systemPrompt += `\n\nCRITICAL: "Christian Cinematic Mode" is ON. 

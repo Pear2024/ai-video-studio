@@ -265,10 +265,21 @@ export default function StudioPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 mt-12">
               <div className="bg-slate-900/80 border border-purple-500/30 rounded-3xl p-8 shadow-2xl">
                 <h2 className="text-3xl font-bold text-white mb-2">{result.title}</h2>
-              <p className="text-pink-400 font-medium mb-6">🔥 Hook: {result.viral_hook}</p>
-              
-              <div className="bg-slate-950 rounded-xl p-4 mb-8 text-slate-300">
-                <p><strong>Summary:</strong> {result.summary}</p>
+                <p className="text-pink-400 font-medium mb-6">🔥 Hook: {result.viral_hook}</p>
+                
+                <div className="bg-slate-950 rounded-xl p-4 mb-8 text-slate-300">
+                  <p><strong>Summary:</strong> {result.summary}</p>
+                </div>
+
+                {result.character_prompt && (
+                  <div className="bg-purple-950/30 border border-purple-500/20 rounded-xl p-4 mb-8">
+                    <h3 className="text-purple-400 font-bold mb-2 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4" /> Character Prompt (ก๊อปปี้ไปวางในทุกฉากเพื่อคุม Character)
+                    </h3>
+                    <p className="text-slate-300 font-mono text-sm">{result.character_prompt}</p>
+                  </div>
+                )}
+
                 <p className="mt-2 text-sm text-slate-400">🎵 Mood: {result.music_mood}</p>
               </div>
 
