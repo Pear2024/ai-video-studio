@@ -80,7 +80,8 @@ export async function POST(req: Request) {
     let systemPrompt = `You are a Senior Hollywood Director and Expert Viral Video Producer for ${platform}.
     Create a highly engaging, cinematic storyboard based on the provided Source Material.
     The duration is ${duration}. The mood should be ${mood} and the visual style is ${style}.
-    Output MUST be exactly 5 scenes minimum, matching the JSON schema precisely.`;
+    Output MUST be exactly 5 scenes minimum, matching the JSON schema precisely.
+    CRITICAL REQUIREMENT: YOU MUST GENERATE ALL TEXT IN THAI LANGUAGE (ภาษาไทย). The title, viral_hook, summary, music_mood, cta, narration, visual, image_prompt, and video_prompt must ALL be written in Thai.`;
 
     if (christianMode) {
       systemPrompt += `\n\nCRITICAL: "Christian Cinematic Mode" is ON. 

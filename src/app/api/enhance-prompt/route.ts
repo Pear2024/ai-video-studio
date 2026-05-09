@@ -20,7 +20,8 @@ export async function POST(req: Request) {
       model: google('gemini-2.5-flash'),
       prompt: `You are an expert Hollywood screenwriter. The user has provided a very short story idea or keyword: "${topic}". 
       Expand this into a compelling, highly visual, and emotional 3-4 sentence cinematic story synopsis. 
-      Do not include any pleasantries, just return the expanded story synopsis directly.`,
+      CRITICAL INSTRUCTION: You MUST write the synopsis entirely in the THAI language (ภาษาไทย).
+      Do not include any pleasantries, just return the expanded story synopsis directly in Thai.`,
     });
 
     return NextResponse.json({ expandedText: text });

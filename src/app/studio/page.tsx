@@ -259,10 +259,11 @@ export default function StudioPage() {
         </motion.div>
 
         {/* Results UI */}
-        {result && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 mt-12">
-            <div className="bg-slate-900/80 border border-purple-500/30 rounded-3xl p-8 shadow-2xl">
-              <h2 className="text-3xl font-bold text-white mb-2">{result.title}</h2>
+        <div id="results-wrapper">
+          {result && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 mt-12">
+              <div className="bg-slate-900/80 border border-purple-500/30 rounded-3xl p-8 shadow-2xl">
+                <h2 className="text-3xl font-bold text-white mb-2">{result.title}</h2>
               <p className="text-pink-400 font-medium mb-6">🔥 Hook: {result.viral_hook}</p>
               
               <div className="bg-slate-950 rounded-xl p-4 mb-8 text-slate-300">
@@ -308,9 +309,10 @@ export default function StudioPage() {
                 <p className="text-xl font-bold text-white mb-2">Call to Action (CTA)</p>
                 <p className="text-slate-300">{result.cta}</p>
               </div>
-            </div>
-          </motion.div>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </div>
       </div>
     </div>
   );
