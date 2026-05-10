@@ -143,7 +143,7 @@ export default function StudioPage() {
                     <textarea 
                       value={topic}
                       onChange={(e) => setTopic(e.target.value)}
-                      placeholder="Describe your story idea here... (e.g. David vs Goliath)"
+                      placeholder="พิมพ์ไอเดียของคุณที่นี่... (เช่น Timelapse สร้างเมืองลอยฟ้า, หรือ มหากาพย์สงครามจักรวาล)"
                       className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-4 text-slate-100 placeholder:text-slate-600 focus:ring-2 focus:ring-purple-500/50 outline-none resize-none h-32 pb-12"
                       data-gramm="false"
                       data-gramm_editor="false"
@@ -211,7 +211,7 @@ export default function StudioPage() {
                   <Clapperboard className="w-4 h-4 text-orange-400" /> Visual Style
                 </label>
                 <select value={style} onChange={(e) => setStyle(e.target.value)} className="w-full bg-slate-950/50 border border-slate-800 rounded-xl p-3 text-slate-100 focus:ring-2 focus:ring-purple-500/50 appearance-none">
-                  <option>Cinematic</option><option>Anime</option><option>Disney Style</option><option>Documentary</option><option>Bible Epic</option><option>Realistic</option><option>Sci-Fi</option>
+                  <option>Cinematic</option><option>Timelapse (วิดีโอเร่งเวลา)</option><option>Anime</option><option>Disney Style</option><option>Documentary</option><option>Bible Epic</option><option>Realistic</option><option>Sci-Fi</option>
                 </select>
               </div>
 
